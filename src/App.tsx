@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import { Loading } from "./Loading";
 import { Tours } from "./Tours";
 
+import { ToursData } from "./@types/tours";
+
 const url = "https://course-api.com/react-tours-project";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [tours, setTours] = useState([]);
+  const [tours, setTours] = useState<ToursData[]>([]);
 
   async function fetchTours() {
     setLoading(true);
@@ -36,7 +38,11 @@ function App() {
     );
   }
 
-  return <h1>Hello World</h1>;
+  return (
+    <main>
+      <Tours tours={tours} />
+    </main>
+  );
 }
 
 export default App;
