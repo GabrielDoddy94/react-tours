@@ -4,9 +4,10 @@ import { ToursData } from "./@types/tours";
 
 type ToursProps = {
   tours: ToursData[];
+  removeTour: (id: string) => void;
 };
 
-export function Tours({ tours }: ToursProps) {
+export function Tours({ tours, removeTour }: ToursProps) {
   return (
     <section>
       <div className="title">
@@ -16,7 +17,7 @@ export function Tours({ tours }: ToursProps) {
 
       <div>
         {tours.map(tour => {
-          return <Tour key={tour.id} {...tour} />;
+          return <Tour key={tour.id} {...tour} removeTour={removeTour} />;
         })}
       </div>
     </section>

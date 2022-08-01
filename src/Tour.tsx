@@ -2,7 +2,11 @@ import { useState } from "react";
 
 import { ToursData } from "./@types/tours";
 
-export function Tour({ id, image, info, price, name }: ToursData) {
+type TourProps = ToursData & {
+  removeTour: (id: string) => void;
+};
+
+export function Tour({ id, image, info, price, name, removeTour }: TourProps) {
   const [readMore, setReadMore] = useState(false);
 
   return (
@@ -20,7 +24,9 @@ export function Tour({ id, image, info, price, name }: ToursData) {
             {readMore ? "show less" : "show more"}
           </button>
         </p>
-        <button className="delete-btn">not interested</button>
+        <button className="delete-btn" onClick={() => removeTour(id)}>
+          not interested
+        </button>
       </footer>
     </article>
   );
